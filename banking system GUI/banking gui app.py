@@ -1,13 +1,10 @@
-#imports
 from tkinter import *
 import os
 from PIL import ImageTk, Image
 
-#Main Screen
 master = Tk()
-master.title('Banking App')
+master.title('Himanshu And Jagjit\'s Banking App')
 
-#Functions
 def finish_reg():
     name = temp_name.get()
     age = temp_age.get()
@@ -47,7 +44,7 @@ def register():
 
     #Register Screen
     register_screen = Toplevel(master)
-    register_screen.title('Register')
+    register_screen.title('Register to our bank')
 
     #Labels
     Label(register_screen, text="Please enter your details below to register", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
@@ -82,11 +79,14 @@ def login_session():
             #Account Dashboard
             if login_password == password:
                 login_screen.destroy()
+
                 account_dashboard = Toplevel(master)
-                account_dashboard.title('Dashboard')
+                account_dashboard.title('Dashboard of '+name)
+
                 #Labels
                 Label(account_dashboard, text="Account Dashboard", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
                 Label(account_dashboard, text="Welcome "+name, font=('Calibri',14)).grid(row=1,sticky=N,pady=10)
+
                 #Buttons
                 Button(account_dashboard, text="Personal Details",font=('Calibri',14),width=30,command=personal_details).grid(row=2,sticky=N,padx=10)
                 Button(account_dashboard, text="Deposit",font=('Calibri',14),width=30,command=deposit).grid(row=3,sticky=N,padx=10)
@@ -108,16 +108,20 @@ def deposit():
     file_data = file.read()
     user_details = file_data.split('\n')
     details_balance = user_details[4]
+
     #Deposit Screen
     deposit_screen = Toplevel(master)
     deposit_screen.title('Deposit')
+
     #Label
     Label(deposit_screen, text="Deposit", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
     current_balance_label = Label(deposit_screen, text="Current Balance : ₹"+details_balance, font=('Calibri',14))
     current_balance_label.grid(row=1,sticky=W)
+
     Label(deposit_screen, text="Amount : ", font=('Calibri',14)).grid(row=2,sticky=W)
     deposit_notif = Label(deposit_screen,font=('Calibri',14))
     deposit_notif.grid(row=4, sticky=N,pady=10)
+
     #Entry
     Entry(deposit_screen, textvariable=amount).grid(row=2,column=1)
     #Button
@@ -156,16 +160,20 @@ def withdraw():
     file_data = file.read()
     user_details = file_data.split('\n')
     details_balance = user_details[4]
+
     #Deposit Screen
     withdraw_screen = Toplevel(master)
     withdraw_screen.title('Withdraw')
+
     #Label
-    Label(withdraw_screen, text="Deposit", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
+    Label(withdraw_screen, text="Withdraw", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
     current_balance_label = Label(withdraw_screen, text="Current Balance : ₹"+details_balance, font=('Calibri',14))
     current_balance_label.grid(row=1,sticky=W)
+
     Label(withdraw_screen, text="Amount : ", font=('Calibri',14)).grid(row=2,sticky=W)
     withdraw_notif = Label(withdraw_screen,font=('Calibri',14))
     withdraw_notif.grid(row=4, sticky=N,pady=10)
+
     #Entry
     Entry(withdraw_screen, textvariable=withdraw_amount).grid(row=2,column=1)
     #Button
@@ -209,15 +217,18 @@ def personal_details():
     details_age = user_details[2]
     details_gender = user_details[3]
     details_balance = user_details[4]
+
     #Personal details screen
     personal_details_screen = Toplevel(master)
     personal_details_screen.title('Personal Details')
+
     #Labels
     Label(personal_details_screen, text="Personal Details", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
-    Label(personal_details_screen, text="Name : "+details_name, font=('Calibri',14)).grid(row=1,sticky=W)
-    Label(personal_details_screen, text="Age : "+details_age, font=('Calibri',14)).grid(row=2,sticky=W)
-    Label(personal_details_screen, text="Gender : "+details_gender, font=('Calibri',14)).grid(row=3,sticky=W)
-    Label(personal_details_screen, text="Balance :₹"+details_balance, font=('Calibri',14)).grid(row=4,sticky=W)
+    Label(personal_details_screen, text="Name : "+details_name, font=('Calibri',14)).grid(row=1,sticky=N,pady=5)
+    Label(personal_details_screen, text="Age : "+details_age, font=('Calibri',14)).grid(row=2,sticky=N,pady=5)
+    Label(personal_details_screen, text="Gender : "+details_gender, font=('Calibri',14)).grid(row=3,sticky=N,pady=5)
+    Label(personal_details_screen, text="Balance : ₹"+details_balance, font=('Calibri',14)).grid(row=4,sticky=N,pady=5)
+
 def login():
     #Vars
     global temp_login_name
@@ -226,33 +237,37 @@ def login():
     global login_screen
     temp_login_name = StringVar()
     temp_login_password = StringVar()
+
     #Login Screen
     login_screen = Toplevel(master)
-    login_screen.title('Login')
+    login_screen.title('Login to our bank')
+
     #Labels
     Label(login_screen, text="Login to your account", font=('Calibri',14)).grid(row=0,sticky=N,pady=15)
     Label(login_screen, text="Username", font=('Calibri',14)).grid(row=1,sticky=W)
     Label(login_screen, text="Password", font=('Calibri',14)).grid(row=2,sticky=W)
     login_notif = Label(login_screen, font=('Calibri',14))
     login_notif.grid(row=4,sticky=N)
+
     #Entry
     Entry(login_screen, textvariable=temp_login_name).grid(row=1,column=1,padx=5)
     Entry(login_screen, textvariable=temp_login_password,show="*").grid(row=2,column=1,padx=5)
-    #Button
-    Button(login_screen, text="Login", command=login_session, width=15,font=('Calibri',14)).grid(row=3,sticky=W,pady=10,padx=5)
 
-#Image import
+    #Button
+    Button(login_screen, text="Login", command=login_session, width=20,font=('Calibri',14)).grid(row=3,sticky=N,pady=10,padx=5)
+
+
+#first screen
+
 img = Image.open('secure.png')
-img = img.resize((150,150))
+img = img.resize((180,180))
 img = ImageTk.PhotoImage(img)
 
-#Labels
-Label(master, text = "Himanshu And Jagjit Bank", font=('Calibri',18)).grid(row=0,sticky=N,pady=15)
-Label(master, text = "The most secure bank you've probably used", font=('Calibri',14)).grid(row=1,sticky=N)
+Label(master, text = "Himanshu And Jagjit Bank", font=('Calibri',20)).grid(row=0,sticky=N,pady=15)
+Label(master, text = "The most secure bank you've probably used", font=('Calibri',16)).grid(row=1,sticky=N)
 Label(master, image=img).grid(row=2,sticky=N,pady=15)
 
-#Buttons
-Button(master, text="Register", font=('Calibri',14),width=20,command=register).grid(row=3,sticky=N)
-Button(master, text="Login", font=('Calibri',14),width=20,command=login).grid(row=4,sticky=N,pady=15)
+Button(master, text="Register", font=('Calibri',16),width=25,command=register).grid(row=3,sticky=N)
+Button(master, text="Login", font=('Calibri',16),width=25,command=login).grid(row=4,sticky=N,pady=15)
 
 master.mainloop()
